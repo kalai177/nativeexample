@@ -1,40 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import react from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import React, { useState } from "react";
+import { StyleSheet, View, SafeAreaView } from "react-native";
+import * as eva from "@eva-design/eva";
+import {
+  ApplicationProvider,
+  Layout,
+  Text,
+  IconRegistry,
+  Icon,
+  Input,
+  Button,
+} from "@ui-kitten/components";
+import { EvaIconsPack } from "@ui-kitten/eva-icons";
+import { color } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
+import { TouchableWithoutFeedback } from "@ui-kitten/components/devsupport";
 
+import Login from "./Login.js";
+import { Signup } from "./signup.js";
+import Front_page from "./Front_page.js";
+import Forgetpass from "./Forgetpass.js";
 export default function App() {
   return (
-    <View style={styles.container}>
-      
-        <View style={styles.header}>
-          <Text>hello</Text>
-         
-
-        </View>
-        <View style={styles.body}>
-            <Text>hi how r u</Text>
-            </View>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <IconRegistry icons={EvaIconsPack} />
+      <ApplicationProvider {...eva} theme={eva.light}>
+        <Forgetpass />
+      </ApplicationProvider>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor:'white',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding:30
-  },
-
-  header:{
-    backgroundColor:'yellow',
-    padding:5,
-    marginBottom:10
-  },
-  body:{
-    backgroundColor:'pink',
-    padding:5
-  }
-});
