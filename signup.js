@@ -1,19 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, View, SafeAreaView } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import * as eva from "@eva-design/eva";
-import {
-  ApplicationProvider,
-  Layout,
-  Text,
-  IconRegistry,
-  Icon,
-  Input,
-  Button,
-} from "@ui-kitten/components";
+import { Text, Icon, Input, Button } from "@ui-kitten/components";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
-import { color } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 import { TouchableWithoutFeedback } from "@ui-kitten/components/devsupport";
-
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Login from "./Login.js";
 const Personoutline = (props) => {
   return <Icon {...props} name="person-outline" />;
 };
@@ -33,7 +26,7 @@ const googleicon = (props) => {
   return <Icon {...props} name="google-outline" />;
 };
 
-function Signup() {
+function Signup({ navigation }) {
   const [name, setname] = useState("");
   const [num, setnum] = useState();
   const [mail, setmail] = useState(" ");
@@ -117,6 +110,7 @@ function Signup() {
           appearance="filled"
           status="info"
           size="medium"
+          onPress={() => navigation.navigate("Login")}
         >
           Create account
         </Button>
@@ -139,20 +133,23 @@ function Signup() {
             marginLeft: 30,
             marginRight: 30,
           }}
+          onPress={() => navigation.navigate("homepage")}
         >
           Continue with google
         </Button>
       </View>
 
-      <View>
-        <Text
-          style={{
-            marginTop: 50,
-            marginLeft: 70,
-          }}
-        >
-          Already have an account? Login
-        </Text>
+      <View
+        style={{
+          marginTop: 50,
+          marginLeft: 70,
+          flexDirection: "row",
+        }}
+      >
+        <Text>Already a user?</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+          <Text style={{ color: "deepskyblue" }}>Login</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

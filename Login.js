@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import * as eva from "@eva-design/eva";
-import { StyleSheet, View, TouchableWithoutFeedback } from "react-native";
-import { Text, IconRegistry, Icon, Input, Button } from "@ui-kitten/components";
+import {
+  StyleSheet,
+  View,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+} from "react-native";
+import { Text, Icon, Input, Button } from "@ui-kitten/components";
+import { color } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 const Emailicon = (props) => {
   return <Icon {...props} name="email-outline" />;
@@ -12,7 +18,7 @@ const googleicon = (props) => {
   return <Icon {...props} name="google-outline" />;
 };
 
-export default function Login() {
+export default function Login({ navigation }) {
   const [email, setemail] = useState(" ");
   const [password, setpassword] = useState();
   const [securetext, setsecuretext] = useState(true);
@@ -79,7 +85,7 @@ export default function Login() {
             padding: 10,
           }}
           secureTextEntry={securetext}
-          onChangeText={(text) => setemail(text)}
+          onChangeText={(text) => setpassword(text)}
         ></Input>
       </View>
 
@@ -100,14 +106,15 @@ export default function Login() {
         </Button>
       </View>
 
-      <View
+      <TouchableOpacity
         style={{
           marginBottom: 50,
           alignItems: "center",
         }}
+        onPress={() => navigation.navigate("forgetpass")}
       >
         <Text>Forget password?</Text>
-      </View>
+      </TouchableOpacity>
 
       <View
         style={{
@@ -126,20 +133,23 @@ export default function Login() {
             marginLeft: 30,
             marginRight: 30,
           }}
+          onPress={() => navigation.navigate("homepage")}
         >
           Continue with google
         </Button>
       </View>
 
-      <View>
-        <Text
-          style={{
-            marginTop: 50,
-            marginLeft: 70,
-          }}
-        >
-          Already have an account? Login
-        </Text>
+      <View
+        style={{
+          marginTop: 50,
+          marginLeft: 70,
+          flexDirection: "row",
+        }}
+      >
+        <Text>Don't have an account?</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
+          <Text style={{ color: "deepskyblue" }}>Create account</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
